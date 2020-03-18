@@ -8,15 +8,16 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity(R.layout.activity_main), WorkoutListFragment.Listener {
 
    override fun itemClicked(id: Long) {
-       if (fragmentContainer != null){
+       fragmentContainer?.run {
            val details = WorkoutDetailFragment()
-           val ft = supportFragmentManager.beginTransaction()
            details.setWorkout(id)
-           ft.replace(R.id.fragmentContainer, details)
-           ft.addToBackStack(null)
-           ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-           ft.commit()
-       } else {
+           supportFragmentManager.beginTransaction().apply {
+               replace(R.id.fragmentContainer, details)
+               addToBackStack(null)
+               setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+               commit()
+           }
+       } ?: run {
            val intent = Intent(this, DetailActivity::class.java)
            intent.putExtra(DetailActivity.EXTRA_WORKOUT_ID, id.toInt())
            startActivity(intent)
