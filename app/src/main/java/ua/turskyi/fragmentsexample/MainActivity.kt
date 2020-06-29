@@ -7,7 +7,11 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(R.layout.activity_main), WorkoutListFragment.Listener {
 
-   override fun itemClicked(id: Long) {
+    override fun itemClicked(id: Long) {
+        /**
+         * The magic is here: depending on phone orientation it will be displayed different layout,
+         * because fragmentContainer does not exist in default orientation layout
+         */
        fragmentContainer?.run {
            val details = WorkoutDetailFragment()
            details.setWorkout(id)
