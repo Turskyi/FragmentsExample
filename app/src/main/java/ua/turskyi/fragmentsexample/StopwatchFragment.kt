@@ -2,6 +2,7 @@ package ua.turskyi.fragmentsexample
 
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,7 +21,7 @@ class StopwatchFragment : Fragment(), View.OnClickListener {
     /* Is the stopwatch running? */
     private var running = false
     private var wasRunning = false
-    private val uiHandler = Handler()
+    private val uiHandler = Handler(Looper.getMainLooper())
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         savedInstanceState?.run {

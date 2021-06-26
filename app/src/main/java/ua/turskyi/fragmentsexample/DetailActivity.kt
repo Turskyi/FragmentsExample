@@ -11,7 +11,9 @@ class DetailActivity : AppCompatActivity(R.layout.activity_detail) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val workoutId = intent.extras?.get(EXTRA_WORKOUT_ID) as Int
-        (detailFragment as WorkoutDetailFragment).setWorkout(workoutId.toLong())
+        if(intent.extras?.get(EXTRA_WORKOUT_ID) is Int && detailFragment is WorkoutDetailFragment){
+            val workoutId = intent.extras?.get(EXTRA_WORKOUT_ID) as Int
+            (detailFragment as WorkoutDetailFragment).setWorkout(workoutId.toLong())
+        }
     }
 }

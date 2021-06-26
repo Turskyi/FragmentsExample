@@ -1,7 +1,7 @@
 package ua.turskyi.fragmentsexample
 
-class Workout //Each Workout has a name and description
-private constructor(val name: String, val description: String) {
+data class Workout //Each Workout has a name and description
+ constructor(val name: String, val description: String) {
     companion object {
         val workouts = arrayOf(
             Workout(
@@ -24,7 +24,5 @@ private constructor(val name: String, val description: String) {
     }
 
 //    not necessary
-/*    override fun toString(): String {
-        return name
-    }*/
+    override fun toString(): String = name
 }
